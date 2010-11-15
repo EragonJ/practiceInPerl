@@ -1,1 +1,11 @@
-Practice in Perl 
+Practice in Perl by EragonJ
+
+Important
+=========
+
+My perl version is v5.8.9 :p
+
+Tutorial
+========
+
+I take http://perldoc.perl.org/5.8.9/index.html for reference.
