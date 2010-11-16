@@ -1,9 +1,9 @@
 #!/usr/bin/perl -w
-# I have to fix chinese words problems in $ARGV and try to utilize it with long sentences input
 use strict;
 use WWW::Mechanize;
 my $mech = WWW::Mechanize->new();
-my $code = $ARGV[1] || "test";
+my $platform = `uname`;
+my $code = $ARGV[0] || "test";
 my %postFields = (
   lang => "text",
   description => "",
@@ -11,5 +11,11 @@ my %postFields = (
   parent => 0
 );
 $mech->post("http://paste2.org/new-paste",\%postFields);
-my $link = $1 if ($mech->content() =~ m{<link rel='stylesheet'.*href='/style/(.*?).css'});
-print "http://paste2.org/p/$link\n";
+
+# Set the link and copy command
+my $link = "http://paste2.org/p/$1" if ($mech->content() =~ m{<link rel='stylesheet'.*href='/style/(.*?).css'});
+my $copy = ($platform =~ /Darwin/) ? "pbcopy" :  "xclip -selection clipboard";
+
+# Final , print the link and store it in the clipboard
+print $link;
+`echo $link | $copy`;
