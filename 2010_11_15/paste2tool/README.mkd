@@ -1,0 +1,12 @@
+It's a perl script that helps you to upload files or sentences quickly to paste2.org
+
+Usage
+=====
+
+perl paste2tool.pl [file ...]
+
+Tutorial
+========
+
+If you set filenames , then the paste2tool will quickly load all your files inside and change lines with "\n".
+Otherwise, it will remind you of typing something by yourself.
