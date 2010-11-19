@@ -5,6 +5,11 @@ Usage
 
 perl paste2tool.pl [file ...]
 
+Demo
+====
+
+perl paste2tool.pl file1 file2 file3
+
 Tutorial
 ========
 
