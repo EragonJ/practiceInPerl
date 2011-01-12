@@ -38,7 +38,7 @@ $mech->post("http://paste2.org/new-paste",\%postFields);
 my $link = "http://paste2.org/p/$1" if ($mech->content() =~ m{<link rel='stylesheet'.*href='/style/(.*?).css'});
 
 # copy command
-my $copy = ($^O cmp "darwin") ? "pbcopy" :  "xclip -selection clipboard";
+my $copy = ($^O eq "darwin") ? "pbcopy" :  "xclip -selection clipboard";
 
 # Final , print the link and store it in the clipboard
 print "$link\n";
