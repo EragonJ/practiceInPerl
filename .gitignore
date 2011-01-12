@@ -1,2 +1,4 @@
 *.ini
 *.csv
+.gitignore
+*test*

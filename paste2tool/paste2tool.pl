@@ -23,7 +23,7 @@ if(scalar(@ARGV)>0)
 else
 {
   print "Type something by yourself.\n> ";
-  $code = <>;
+  chomp($code = <>);
 }
 
 my %postFields = (
@@ -34,10 +34,11 @@ my %postFields = (
 );
 $mech->post("http://paste2.org/new-paste",\%postFields);
 
-my $platform = `uname`;
 # Set the link and copy command
 my $link = "http://paste2.org/p/$1" if ($mech->content() =~ m{<link rel='stylesheet'.*href='/style/(.*?).css'});
-my $copy = ($platform =~ /Darwin/) ? "pbcopy" :  "xclip -selection clipboard";
+
+# copy command
+my $copy = ($^O cmp "darwin") ? "pbcopy" :  "xclip -selection clipboard";
 
 # Final , print the link and store it in the clipboard
 print "$link\n";
