@@ -2,3 +2,4 @@
 *.csv
 .gitignore
 *test*
+.DS_Store

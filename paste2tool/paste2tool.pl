@@ -5,33 +5,29 @@ my $mech = WWW::Mechanize->new();
 my $code;
 
 # It means we have many files to load
-if(scalar(@ARGV)>0)
-{
-  for my $filename (@ARGV)
-  {
+if (@ARGV>0) {
+  for my $filename (@ARGV) {
     # Open all files and store in $code
     {
-      local $/ = undef; 
-      local *FILE; 
-      open FILE, "<$filename"; 
-      $code .= <FILE>."\n"; 
-      close FILE; 
+      open my $FILE, "<$filename"; 
+      $code .= <$FILE>."\n"; 
+      close $FILE; 
     }
   }
   $code .= "This file is generated automatically by paste2tool!";
 }
-else
-{
+else {
   print "Type something by yourself.\n> ";
   chomp($code = <>);
 }
 
 my %postFields = (
-  lang => "text",
+  code        => $code,
   description => "",
-  code => $code,
-  parent => 0
+  lang        => "text",
+  parent      => 0,
 );
+
 $mech->post("http://paste2.org/new-paste",\%postFields);
 
 # Set the link and copy command
